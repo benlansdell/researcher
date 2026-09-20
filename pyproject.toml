@@ -17,13 +17,13 @@ dependencies = [
   "watchdog>=5.0.0",
 ]
 
-[project.optional-dependencies]
+[project.scripts]
+research-wiki = "research_wiki.cli:app"
+
+[dependency-groups]
 dev = [
   "pytest>=8.3.0",
 ]
-
-[project.scripts]
-research-wiki = "research_wiki.cli:app"
 
 [tool.hatch.build.targets.wheel]
 packages = ["research_wiki"]

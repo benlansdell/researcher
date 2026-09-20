@@ -15,7 +15,7 @@ The design is deliberately conservative:
 
 ## Requirements
 
-- Python 3.11+
+- [uv](https://docs.astral.sh/uv/) (Python 3.11+ is installed/managed by uv as needed)
 - An OpenAI API key in `OPENAI_API_KEY`
 - An Obsidian vault, or simply any directory containing Markdown notes
 
@@ -23,20 +23,23 @@ The OpenAI integration uses the Responses API with Pydantic structured outputs. 
 
 ## Install
 
-From this repository:
+From this repository, with [uv](https://docs.astral.sh/uv/):
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -e .
+uv sync
 export OPENAI_API_KEY="..."
 ```
 
-For development/tests:
+That creates `.venv`, installs the package in editable mode, and puts `research-wiki` on the environment PATH. Then either activate the venv or prefix commands with `uv run`:
 
 ```bash
-pip install -e '.[dev]'
-pytest
+uv run research-wiki --help
+```
+
+For development/tests (`dev` is included by default with `uv sync`):
+
+```bash
+uv run pytest
 ```
 
 ## Initialize a vault
