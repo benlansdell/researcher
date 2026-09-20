@@ -16,7 +16,7 @@ The design is deliberately conservative:
 ## Requirements
 
 - [uv](https://docs.astral.sh/uv/) (Python 3.11+ is installed/managed by uv as needed)
-- An OpenAI API key in `OPENAI_API_KEY`
+- An OpenAI API key in `OPENAI_API_KEY` (environment variable or a `.env` file)
 - An Obsidian vault, or simply any directory containing Markdown notes
 
 The OpenAI integration uses the Responses API with Pydantic structured outputs. `#research` requests use the Responses API web-search tool.
@@ -27,8 +27,20 @@ From this repository, with [uv](https://docs.astral.sh/uv/):
 
 ```bash
 uv sync
+```
+
+Set your OpenAI API key in the environment, or in a `.env` file in the vault (or the current directory):
+
+```bash
 export OPENAI_API_KEY="..."
 ```
+
+```bash
+# ~/Documents/Obsidian/MyVault/.env
+OPENAI_API_KEY=sk-...
+```
+
+Already-set environment variables take precedence over `.env`. Do not commit `.env` or sync it with the rest of the vault.
 
 That creates `.venv`, installs the package in editable mode, and puts `research-wiki` on the environment PATH. Then either activate the venv or prefix commands with `uv run`:
 

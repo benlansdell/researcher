@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Callable
 
 from .config import AppConfig
+from .env import load_env
 from .llm import OpenAILLM
 from .markdown import (
     MANAGED_END,
@@ -33,6 +34,7 @@ class ProcessResult:
 
 class Processor:
     def __init__(self, vault_root: Path, config: AppConfig | None = None, llm=None):
+        load_env(vault_root)
         self.config = config or AppConfig.load(vault_root)
         self.vault = Vault(vault_root, self.config)
         self.state = StateStore(vault_root)
